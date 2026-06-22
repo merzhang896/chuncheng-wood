@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://merzhang896.github.io/chuncheng-wood/sitemap.xml
