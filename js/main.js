@@ -112,3 +112,15 @@ function closeImage() {
     document.getElementById('imageModal').classList.remove('visible');
     document.body.style.overflow = '';
 }
+
+function toggleFaq(element) {
+    const content = element.nextElementSibling;
+    const icon = element.querySelector('span:last-child');
+    if (content.style.display === 'none' || content.style.display === '') {
+        content.style.display = 'block';
+        icon.textContent = '▲';
+    } else {
+        content.style.display = 'none';
+        icon.textContent = '▼';
+    }
+}

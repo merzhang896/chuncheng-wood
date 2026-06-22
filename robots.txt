@@ -1,4 +1,16 @@
 User-agent: *
 Allow: /
 
+User-agent: doubaoBot
+Allow: /
+
+User-agent: baiduspider
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: bingbot
+Allow: /
+
 Sitemap: https://merzhang896.github.io/chuncheng-wood/sitemap.xml
