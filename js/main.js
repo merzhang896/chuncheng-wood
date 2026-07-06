@@ -46,38 +46,12 @@ function handleSubmit(formId, successMessage) {
 handleSubmit('joinForm', '感谢您的加盟申请！我们的工作人员会尽快与您联系。');
 handleSubmit('contactForm', '感谢您的留言！我们会尽快回复您。');
 
-// 数字滚动动画
-function animateNumber(element, start, end, duration) {
-    let startTimestamp = null;
-    const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        const value = Math.floor(progress * (end - start) + start);
-        element.textContent = value.toLocaleString();
-        if (progress < 1) {
-            window.requestAnimationFrame(step);
-        }
-    };
-    window.requestAnimationFrame(step);
-}
-
-// 观察者 - 数字动画
-const observerOptions = {
-    threshold: 0.5
-};
-
-const numberObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const target = parseInt(entry.target.getAttribute('data-target'));
-            animateNumber(entry.target, 0, target, 2000);
-            numberObserver.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
+// 统计数字保持稳定显示，避免访客或截图看到动画过程中的中间值。
 document.querySelectorAll('.stat-number[data-target]').forEach(el => {
-    numberObserver.observe(el);
+    const target = parseInt(el.getAttribute('data-target'), 10);
+    if (!Number.isNaN(target)) {
+        el.textContent = target.toLocaleString();
+    }
 });
 
 document.addEventListener('DOMContentLoaded', function() {
